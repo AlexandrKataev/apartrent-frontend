@@ -1,4 +1,4 @@
-import { Estate } from 'entities/Estate';
+import { Estate } from 'entities/EstateList';
 import React from 'react';
 
 export const AdminPage: React.FC = () => {

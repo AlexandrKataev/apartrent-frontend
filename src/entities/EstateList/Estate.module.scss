@@ -1,0 +1,106 @@
+.container {
+  color: var(--b);
+  background-color: var(--w);
+  width: 70vw;
+  margin: 20px auto;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  position: relative;
+  display: grid;
+  grid-template-columns: 90px 2fr 0.8fr 0.8fr 1fr 1fr;
+  align-content: center;
+  grid-template-areas: 'id name buy rent status updated icon';
+  padding: 0 30px;
+  width: 70vw;
+  height: 60px;
+  font-weight: 800;
+  &:after {
+    position: absolute;
+    bottom: 0;
+    left: 1%;
+    width: 98%;
+    border-top: 1px solid var(--g);
+    content: '';
+  }
+}
+
+.item {
+  cursor: pointer;
+  position: relative;
+  display: grid;
+  grid-template-columns: 90px 2fr 0.8fr 0.8fr 1fr 1fr;
+  align-content: center;
+  grid-template-areas: 'id name buy rent status updated icon';
+  padding: 0 30px;
+  width: 70vw;
+  height: 60px;
+
+  &:hover {
+    background-color: var(--g3);
+  }
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 1%;
+    width: 98%;
+    border-top: 1px solid var(--g2);
+    content: '';
+  }
+}
+
+.name {
+  font-size: 16px;
+  grid-area: name;
+  // margin-bottom: 10px;
+}
+
+.updated {
+  font-size: 16px;
+  grid-area: updated;
+}
+
+.buyPrice {
+  font-size: 16px;
+  grid-area: buy;
+}
+
+.id {
+  font-size: 16px;
+  grid-area: id;
+}
+
+.rentPayment {
+  font-size: 16px;
+  grid-area: rent;
+}
+
+.icon {
+  width: 20px;
+  fill: var(--g);
+  grid-area: icon;
+  justify-self: end;
+  &:hover {
+    fill: var(--m);
+  }
+}
+
+.plus {
+  width: 20px;
+  cursor: pointer;
+  fill: var(--m);
+  grid-area: icon;
+  justify-self: end;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.status {
+  font-size: 16px;
+  grid-area: status;
+}

@@ -3,19 +3,22 @@ import s from './Estate.module.scss';
 
 import { ReactComponent as Trash } from 'shared/icons/trash.svg';
 
+import { ReactComponent as Plus } from 'shared/icons/plus.svg';
+import { Button } from 'shared/ui/Button';
+
 export const Estate: React.FC = () => {
   const arr = [
     {
-      id: 1,
+      id: 123435,
       name: 'Квартира на Зяби',
       description: 'нормальная такая квартира, че нет',
       buyPrice: 3000000,
       rentPayment: 15000,
-      status: 'lookingForTenants',
+      status: 'looking',
       lastUpdated: '2022-11-16T13:43:21.6862713Z',
     },
     {
-      id: 2,
+      id: 253544,
       name: 'Квартира на ГЭСе',
       description: 'дерьмище подешевле',
       buyPrice: 2500000,
@@ -24,12 +27,12 @@ export const Estate: React.FC = () => {
       lastUpdated: '2022-11-21T13:43:21.6864157Z',
     },
     {
-      id: 3,
+      id: 533,
       name: 'Квартира в Новом Городе',
       description: null,
       buyPrice: 5000000,
       rentPayment: 20000,
-      status: 'preparingForInvestments',
+      status: 'preparing',
       lastUpdated: '2022-11-23T13:43:21.6864173Z',
     },
     {
@@ -46,11 +49,12 @@ export const Estate: React.FC = () => {
   const items = arr.map((el) => {
     return (
       <div className={s.item}>
-        <div>
-          <div className={s.name}>{el.name}</div>
-          <div className={s.buyPrice}>{el.buyPrice} $</div>
-          <div className={s.rentPayment}>{el.rentPayment} $</div>
-        </div>
+        <div className={s.id}>{el.id}</div>
+        <div className={s.name}>{el.name}</div>
+        <div className={s.buyPrice}>{el.buyPrice} $</div>
+        <div className={s.rentPayment}>{el.rentPayment} $</div>
+        <div className={s.status}>{el.status}</div>
+        <div className={s.updated}>{el.lastUpdated.slice(0, 10)}</div>
         <div className={s.icon}>
           <Trash />
         </div>
@@ -58,5 +62,20 @@ export const Estate: React.FC = () => {
     );
   });
 
-  return <div className={s.container}>{items}</div>;
+  return (
+    <div className={s.container}>
+      <div className={s.header}>
+        <div className={s.id}>id</div>
+        <div className={s.name}>Name</div>
+        <div className={s.buyPrice}>Buy </div>
+        <div className={s.rentPayment}>Rent</div>
+        <div className={s.status}>Status</div>
+        <div className={s.updated}>Updated</div>
+        <div className={s.plus}>
+          <Plus />
+        </div>
+      </div>
+      {items}
+    </div>
+  );
 };
