@@ -20,3 +20,33 @@ export enum Status {
   SUCCESS = 'success',
   ERROR = 'error',
 }
+
+// export interface "EstateGridDto": {
+// 	"type": "object",
+// 	"properties": {
+// 		"id": {
+// 			"type": "integer",
+// 			"format": "int32"
+// 		},
+// 		"name": {
+// 			"type": "string",
+// 			"nullable": true
+// 		},
+// 		"buyPrice": {
+// 			"type": "number",
+// 			"format": "double"
+// 		},
+// 		"rentPayment": {
+// 			"type": "number",
+// 			"format": "double"
+// 		},
+// 		"lastUpdated": {
+// 			"type": "string",
+// 			"format": "date-time"
+// 		},
+// 		"status": {
+// 			"$ref": "#/components/schemas/EstateStatus"
+// 		}
+// 	},
+// 	"additionalProperties": false
+// },

@@ -13,13 +13,13 @@ export const Estate: React.FC = () => {
 
   const getData = async () => {
     const { data } = await axios.get('http://localhost:6100/Estate/getEstatesList');
-    console.log(data);
+    console.log(data, 'дата из компонента');
     setDataArr(data);
   };
 
   useEffect(() => {
     getData();
-    console.log(dataArr);
+    console.log(dataArr, 'дата из компонента');
   }, []);
 
   const arr = [
