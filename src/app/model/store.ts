@@ -1,9 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
-import estateList from 'entities/EstateList/model/estateListSlice';
+import estatesList from 'entities/EstatesList/model/estateListSlice';
 
 export const store = configureStore({
-  reducer: { estateList },
+  reducer: { estatesList },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

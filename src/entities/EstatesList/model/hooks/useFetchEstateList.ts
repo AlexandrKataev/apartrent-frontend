@@ -1,12 +1,12 @@
 import { useAppDispatch, useAppSelector } from 'app/model/hooks';
 
 import { useEffect } from 'react';
-import { getEstateList } from '../estateListSlice';
+import { getEstatesList } from '../estateListSlice';
 
-export const useFetchProgress = () => {
+export const useFetchEstateList = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getEstateList());
+    dispatch(getEstatesList());
   }, []);
 };

@@ -1,10 +1,10 @@
-import { Estate } from 'entities/EstateList';
+import { EstatesList } from 'entities/EstatesList';
 import React from 'react';
 
 export const AdminPage: React.FC = () => {
   return (
     <div>
-      <Estate />
+      <EstatesList />
     </div>
   );
 };
