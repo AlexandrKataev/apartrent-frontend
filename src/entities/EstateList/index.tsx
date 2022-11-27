@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './Estate.module.scss';
 
 import { ReactComponent as Trash } from 'shared/icons/trash.svg';
 
 import { ReactComponent as Plus } from 'shared/icons/plus.svg';
-import { Button } from 'shared/ui/Button';
+
+import { getEstateList } from './model/estateListSlice';
+import axios from 'axios';
 
 export const Estate: React.FC = () => {
+  const [dataArr, setDataArr] = useState([]);
+
+  const getData = async () => {
+    const { data } = await axios.get('http://localhost:6100/Estate/getEstatesList');
+    console.log(data);
+    setDataArr(data);
+  };
+
+  useEffect(() => {
+    getData();
+    console.log(dataArr);
+  }, []);
+
   const arr = [
     {
       id: 123435,
@@ -48,7 +63,7 @@ export const Estate: React.FC = () => {
 
   const items = arr.map((el) => {
     return (
-      <div className={s.item}>
+      <div className={s.item} key={el.id}>
         <div className={s.id}>{el.id}</div>
         <div className={s.name}>{el.name}</div>
         <div className={s.buyPrice}>{el.buyPrice} $</div>

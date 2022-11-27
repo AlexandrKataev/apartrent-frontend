@@ -1,14 +1,30 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import { estateItem, estateListState, Status } from './types';
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export const getEstateList = createAsyncThunk<estateItem[]>('pizza/getEstateList', async () => {
-  const response = await axios.get<estateItem[]>('http://localhost:6100/Estate/getEstatesList');
-  console.log(response.data);
-  return response.data;
-});
+export const getEstateList = createAsyncThunk<estateItem[]>(
+  'estateList/getEstateList',
+  //@ts-ignore
+  async () => {
+    try {
+      const { data } = await axios.get('http://localhost:6100/Estate/getEstatesList');
+      console.log(data);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        handleAxiosError(error);
+        console.log('error');
+      } else {
+        console.log(error);
+      }
+    }
+    // console.log('fetch');
+    // const response = await axios.get<estateItem[]>('http://localhost:6100/Estate/getEstatesList');
+    // console.log(response.data);
+    // return response.data;
+  },
+);
 
 const initialState: estateListState = {
   estateList: [],
@@ -19,7 +35,7 @@ export const estateListSlice = createSlice({
   name: 'estateList',
   initialState,
   reducers: {
-    setProgress: (state, action) => {
+    setEstateList: (state, action) => {
       state.estateList = action.payload;
     },
     updateProgress: (state, action) => {
@@ -40,5 +56,8 @@ export const estateListSlice = createSlice({
   },
 });
 
-export const { setProgress, updateProgress } = estateListSlice.actions;
+export const { setEstateList, updateProgress } = estateListSlice.actions;
 export default estateListSlice.reducer;
+function handleAxiosError(error: AxiosError<any, any>) {
+  throw new Error('Function not implemented.');
+}
