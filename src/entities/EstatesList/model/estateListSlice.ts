@@ -30,9 +30,6 @@ export const estatesListSlice = createSlice({
     setEstatesList: (state, action) => {
       state.estatesList = action.payload;
     },
-    updateProgress: (state, action) => {
-      state.estatesList = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(getEstatesList.pending, (state) => {
@@ -48,8 +45,9 @@ export const estatesListSlice = createSlice({
   },
 });
 
-export const { setEstatesList, updateProgress } = estatesListSlice.actions;
+export const { setEstatesList } = estatesListSlice.actions;
 export default estatesListSlice.reducer;
+
 function handleAxiosError(error: AxiosError<any, any>) {
   throw new Error('Function not implemented.');
 }

@@ -1,2 +1,2 @@
 export * from './AdminPage';
-export * from './EstatePage';
+export * from './EstateProfilePage';
