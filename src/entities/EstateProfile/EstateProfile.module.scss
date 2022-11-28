@@ -42,6 +42,13 @@ button {
   }
 }
 
+.dissabled_button {
+  background-color: var(--g);
+  &:hover {
+    opacity: 1;
+  }
+}
+
 .header {
   margin-top: 20px;
   margin-right: 150px;

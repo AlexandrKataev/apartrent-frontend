@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from 'app/model/hooks';
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import s from './EstateProfile.module.scss';
 
@@ -25,6 +25,7 @@ interface EstateProfileProps {
 export const EstateProfile: React.FC<EstateProfileProps> = (props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [isChanged, setIsChanged] = useState(false);
 
   const profileState = useAppSelector(selectEstateProfile);
   const description = useAppSelector(selectEstateProfileDescription);
@@ -92,21 +93,26 @@ export const EstateProfile: React.FC<EstateProfileProps> = (props) => {
 
   const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setEstateName(event.target.value));
+    !isChanged && setIsChanged(true);
   };
 
   const onChangeDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(setEstateDescription(event.target.value));
+    !isChanged && setIsChanged(true);
   };
   const onChangeBuyPrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setEstateBuyPrice(event.target.value));
+    !isChanged && setIsChanged(true);
   };
 
   const onChangeRentPayment = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setEstateRentPayment(event.target.value));
+    !isChanged && setIsChanged(true);
   };
 
   const onChangeStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setEstateStatus(event.target.value));
+    !isChanged && setIsChanged(true);
   };
 
   const onClickCancel = () => {
@@ -172,11 +178,15 @@ export const EstateProfile: React.FC<EstateProfileProps> = (props) => {
           <div>{`${profileState.lastUpdated}`}</div>
         </div>
         <div className={s.item}>
-          <button onClick={props.isCreated ? onClickUpdateEstate : onClickPostEstate}>
-            Сохранить
-          </button>
+          {isChanged ? (
+            <button onClick={props.isCreated ? onClickUpdateEstate : onClickPostEstate}>
+              Сохранить
+            </button>
+          ) : (
+            <button className={s.dissabled_button}>Сохранить</button>
+          )}
           <button onClick={onClickCancel}>Отменить</button>
-          <button onClick={onClickDelete}>Удалить</button>
+          {props.isCreated && <button onClick={onClickDelete}>Удалить</button>}
         </div>
       </div>
     </div>
