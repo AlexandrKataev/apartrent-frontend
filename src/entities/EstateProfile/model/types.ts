@@ -8,6 +8,15 @@ export interface estateProfileState {
   lastUpdated: string;
 }
 
+export interface estatePostType {
+  name: string;
+  id: number;
+  description: string;
+  buyPrice: number;
+  rentPayment: number;
+  status: estateStatus;
+}
+
 export enum resStatus {
   LOADING = 'loading',
   SUCCESS = 'success',

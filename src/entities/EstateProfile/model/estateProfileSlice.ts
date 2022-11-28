@@ -1,25 +1,43 @@
 import axios, { AxiosError } from 'axios';
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { estateProfileState, resStatus } from './types';
+import { estatePostType, estateProfileState } from './types';
 
 export const getEstateProfile = createAsyncThunk<estateProfileState, string>(
-  'estateProfile/getEstateProfile',
+  'estateProfile/getEstate',
   async (estateId) => {
     try {
       const { data } = await axios.get(`http://localhost:6100/Estate/getEstate?id=${estateId}`);
-
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         handleAxiosError(error);
         console.log('error', error);
       } else {
-        console.log('error', error);
+        console.log('error');
       }
     }
   },
 );
+
+// export const postEstateProfile = createAsyncThunk<estateProfileState, estatePostType>(
+//   'estateProfile/postEstate',
+//   async (newEstateData) => {
+//     try {
+//       axios.post(`http://localhost:6100/Estate/addEstate`){
+//         newEstateData: newEstateData
+// 			};
+
+//     } catch (error) {
+//       if (axios.isAxiosError(error)) {
+//         handleAxiosError(error);
+//         console.log('error', error);
+//       } else {
+//         console.log('error');
+//       }
+//     }
+//   },
+// );
 
 const initialState: estateProfileState = {
   id: '',
@@ -35,34 +53,26 @@ export const estateProfileSlice = createSlice({
   name: 'estateProfile',
   initialState,
   reducers: {
-    // resetEstateProfile: (state, action) => {
-    //   state = initialState;
-    // },
-    // resetEstateProfile: (state, action) => {
-    //   state = action.payload;
-    // },
-    // resetEstateProfile: (state, action) => {
-    //   state = action.payload;
-    // },
-    setEstateProfileId: (state, action) => {
+    resetEstate: () => initialState,
+    setEstateId: (state, action) => {
+      state.id = action.payload;
+    },
+    setEstateName: (state, action) => {
       state.name = action.payload;
     },
-    setEstateProfileName: (state, action) => {
-      state.name = action.payload;
-    },
-    setEstateProfileDescription: (state, action) => {
+    setEstateDescription: (state, action) => {
       state.description = action.payload;
     },
-    setEstateProfileBuyPrice: (state, action) => {
+    setEstateBuyPrice: (state, action) => {
       state.buyPrice = action.payload;
     },
-    setEstateProfileRentPayment: (state, action) => {
+    setEstateRentPayment: (state, action) => {
       state.rentPayment = action.payload;
     },
-    setEstateProfileStatus: (state, action) => {
+    setEstateStatus: (state, action) => {
       state.status = action.payload;
     },
-    setEstateProfileLastUpdated: (state, action) => {
+    setEstateLastUpdated: (state, action) => {
       state.lastUpdated = action.payload;
     },
   },
@@ -80,13 +90,14 @@ export const estateProfileSlice = createSlice({
 });
 
 export const {
-  setEstateProfileId,
-  setEstateProfileName,
-  setEstateProfileDescription,
-  setEstateProfileBuyPrice,
-  setEstateProfileRentPayment,
-  setEstateProfileStatus,
-  setEstateProfileLastUpdated,
+  resetEstate,
+  setEstateId,
+  setEstateName,
+  setEstateDescription,
+  setEstateBuyPrice,
+  setEstateRentPayment,
+  setEstateStatus,
+  setEstateLastUpdated,
 } = estateProfileSlice.actions;
 export default estateProfileSlice.reducer;
 

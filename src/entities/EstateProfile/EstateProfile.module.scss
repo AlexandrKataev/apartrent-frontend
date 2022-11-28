@@ -29,9 +29,23 @@
 
 button {
   color: var(--w);
-  border-radius: 20px;
-  width: 100px;
-  height: 40px;
+  border-radius: 25px;
+
+  width: 125px;
+  height: 50px;
   background-color: var(--m);
   margin: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.header {
+  margin-top: 20px;
+  margin-right: 150px;
+  color: var(--m);
+  font-size: 30px;
+  font-weight: 700;
 }
