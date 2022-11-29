@@ -2,8 +2,9 @@ import axios, { AxiosError } from 'axios';
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { estatePostType, estateProfileState } from './types';
+import { EstateDto } from 'shared/api/swagger/myApi';
 
-export const getEstateProfile = createAsyncThunk<estateProfileState, string>(
+export const getEstateProfile = createAsyncThunk<EstateDto, string>(
   'estateProfile/getEstate',
   async (estateId) => {
     try {
@@ -39,14 +40,14 @@ export const getEstateProfile = createAsyncThunk<estateProfileState, string>(
 //   },
 // );
 
-const initialState: estateProfileState = {
-  id: '',
-  name: '',
-  description: '',
-  buyPrice: '',
-  rentPayment: '',
-  status: '',
-  lastUpdated: '',
+const initialState: EstateDto = {
+  id: undefined,
+  name: undefined,
+  description: undefined,
+  buyPrice: undefined,
+  rentPayment: undefined,
+  status: undefined,
+  lastUpdated: undefined,
 };
 
 export const estateProfileSlice = createSlice({
