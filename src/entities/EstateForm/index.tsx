@@ -1,28 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import s from './EstateForm.module.scss';
 
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-import { Ioptions, IShippingFields } from './types';
+import { Ioptions, IShippingFields, statusOptions } from './model/types';
 import ReactSelect from 'react-select';
 import { ErrorHint } from './ui/ErrorHint';
-import { Field } from 'devextreme-react/data-grid';
+import { Button } from 'shared/ui/Button';
+import {
+  useCreateEstateMutation,
+  useGetEstateQuery,
+  useUpdateEstateMutation,
+} from 'shared/api/services/EstateService';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const options: Ioptions[] = [
-  { value: 'none', label: 'None' },
-  { value: 'preparingForInvestments', label: 'Preparing for investments' },
-  { value: 'announcement', label: 'Announcement' },
-  { value: 'fundraising', label: 'Fundraising' },
-  { value: 'buyingEstate', label: 'Buying Estate' },
-  { value: 'preparingForRent', label: 'Preparing for rent' },
-  { value: 'rented', label: 'Rented' },
-  { value: 'lookingForTenants', label: 'Looking for tenants' },
-  { value: 'preparingForSell', label: 'Preparing for sell' },
-  { value: 'sold', label: 'Sold' },
-];
-
-// Форма на DevExpress
 export const EstateForm: React.FC = () => {
+  const { estateId } = useParams();
+
+  const navigate = useNavigate();
+
+  const { data } = useGetEstateQuery(Number(estateId));
+  const [createEstate] = useCreateEstateMutation();
+  const [updateEstate] = useUpdateEstateMutation();
+
+  useEffect(() => {
+    estateId && setValueFormClick();
+  }, [data]);
+
   const {
     register,
     control,
@@ -31,22 +35,29 @@ export const EstateForm: React.FC = () => {
     reset,
     setValue,
   } = useForm<IShippingFields>({ mode: 'onChange' });
-  const onSubmit: SubmitHandler<IShippingFields> = (data) => {
-    alert(
-      `name: ${data.name}, price: ${data.buyPrice}, descr: ${data.description}, status: ${data.status}`,
-    );
-    reset();
+
+  const onSubmit: SubmitHandler<IShippingFields> = (formData) => {
+    if (window.confirm('Save estate?')) {
+      estateId
+        ? updateEstate({ ...formData, id: Number(estateId) })
+        : createEstate({ ...formData, id: 0 });
+      navigate('/admin');
+      reset();
+    }
   };
 
   const setValueFormClick = () => {
-    setValue('name', 'House');
-    setValue('buyPrice', 2000);
-    setValue('description', 'Здесь будет загруженое описание');
-    setValue('status', 'rented');
+    if (data) {
+      setValue('name', data?.name);
+      setValue('buyPrice', data?.buyPrice);
+      setValue('rentPayment', data?.rentPayment);
+      setValue('description', data?.description);
+      setValue('status', data?.status);
+    }
   };
 
   const getValue = (value: string) =>
-    value ? options.find((option) => option.value === value) : '';
+    value ? statusOptions.find((option) => option.value === value) : '';
 
   return (
     <div className={s.container}>
@@ -96,8 +107,9 @@ export const EstateForm: React.FC = () => {
           <div className={s.descr}>Description</div>
           <input
             className={s.input}
+            type="text"
             {...register('description', {
-              pattern: { value: /^[A-Za-z]+$/i, message: 'Только буквы' },
+              required: 'Поле обязательно',
             })}
           />
           {errors.description?.message && <ErrorHint errorMessage={errors.description.message} />}
@@ -112,7 +124,7 @@ export const EstateForm: React.FC = () => {
                 <ReactSelect
                   className={s.popup}
                   placeholder={'status'}
-                  options={options}
+                  options={statusOptions}
                   value={getValue(value)}
                   onChange={(newValue) => {
                     onChange((newValue as Ioptions).value);
@@ -126,7 +138,7 @@ export const EstateForm: React.FC = () => {
 
         <button>Save</button>
       </form>
-      <button onClick={setValueFormClick}>Set value</button>
+      <Button />
     </div>
   );
 };

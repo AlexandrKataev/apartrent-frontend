@@ -24,29 +24,30 @@ export interface CurrentUserDto {
 }
 
 export interface EstateCreateRequest {
-  name?: string | null;
+  name: string | null;
   /** @format int32 */
-  id?: number;
-  description?: string | null;
+  id: number;
+  description: string | null;
   /** @format double */
-  buyPrice?: number;
+  buyPrice: number;
   /** @format double */
-  rentPayment?: number;
-  status?: EstateStatus;
+  rentPayment: number;
+  // status: string;
+  status: string;
 }
 
 export interface EstateDto {
   /** @format int32 */
-  id?: number;
-  name?: string;
-  description?: string;
+  id: number;
+  name: string;
+  description: string;
   /** @format double */
-  buyPrice?: number;
+  buyPrice: number;
   /** @format double */
-  rentPayment?: number;
-  status?: EstateStatus;
+  rentPayment: number;
+  status: EstateStatus;
   /** @format date-time */
-  lastUpdated?: string;
+  lastUpdated: string;
 }
 
 export interface EstateGridDto {
@@ -77,14 +78,14 @@ export enum EstateStatus {
 
 export interface EstateUpdateRequest {
   /** @format int32 */
-  id?: number;
-  name?: string | null;
-  description?: string | null;
+  id: number;
+  name: string | null;
+  description: string | null;
   /** @format double */
-  buyPrice?: number;
+  buyPrice: number;
   /** @format double */
-  rentPayment?: number;
-  status?: EstateStatus;
+  rentPayment: number;
+  status: string;
 }
 
 export interface LoginRequest {

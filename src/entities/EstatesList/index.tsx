@@ -5,19 +5,17 @@ import { ReactComponent as Trash } from 'shared/icons/trash.svg';
 
 import { ReactComponent as Plus } from 'shared/icons/plus.svg';
 
-import { useFetchEstateList } from './model/hooks/useFetchEstateList';
-import { useAppDispatch, useAppSelector } from 'app/model/hooks';
-import { selectEstatesList } from './model/selectors';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useDeleteEstateMutation, useGetEstatesListQuery } from 'shared/api/services/EstateService';
 
 export const EstatesList: React.FC = () => {
-  const estatesListData = useAppSelector(selectEstatesList);
   const navigate = useNavigate();
 
-  const [onMouseDelete, setOnMouseDelete] = useState(false);
+  const { data } = useGetEstatesListQuery('');
+  const [deleteEstate] = useDeleteEstateMutation();
 
-  useFetchEstateList();
+  const [onMouseDelete, setOnMouseDelete] = useState(false);
 
   const onClickEstate = (estateId: number) => {
     navigate(`/estate/${estateId}`);
@@ -29,18 +27,11 @@ export const EstatesList: React.FC = () => {
 
   const onClickDelete = async (id: number) => {
     if (window.confirm('Delete estate?')) {
-      await axios
-        .delete(`http://localhost:6100/Estate/deleteEstate?id=${id}`)
-        .then(function (response) {
-          navigate(`/admin`);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      deleteEstate(id);
     }
   };
 
-  const items = estatesListData.map((el) => {
+  const items = data?.map((el) => {
     return (
       <div className={s.item} key={el.id} onClick={() => !onMouseDelete && onClickEstate(el.id)}>
         <div className={s.id}>{el.id}</div>
