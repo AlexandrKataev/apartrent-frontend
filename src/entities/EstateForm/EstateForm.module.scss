@@ -1,21 +1,37 @@
 .container {
-  color: var(--g);
   background-color: var(--w);
   width: 70vw;
   margin: 20px auto;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  align-items: end;
-  padding-right: 25%;
+  align-items: center;
+
   font-size: 16px;
 }
 
-.item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 5px;
+.container h1 {
+  font-size: 20px;
+}
+
+.error {
+  position: absolute;
+  left: 103%;
+  top: 40%;
+  width: 200px;
+}
+
+.descr {
+  position: absolute;
+  right: 103%;
+  top: 40%;
+  width: 100px;
+  text-align: end;
+  color: var(--g);
+}
+
+.stroke {
+  position: relative;
 }
 
 .input {
@@ -24,7 +40,12 @@
   border: 1px solid var(--g);
   border-radius: 10px;
   font-size: 16px;
-  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.popup {
+  width: 250px;
+  margin-top: 10px;
 }
 
 button {
@@ -40,19 +61,4 @@ button {
   &:hover {
     opacity: 0.9;
   }
-}
-
-.dissabled_button {
-  background-color: var(--g);
-  &:hover {
-    opacity: 1;
-  }
-}
-
-.header {
-  margin-top: 20px;
-  margin-right: 150px;
-  color: var(--m);
-  font-size: 30px;
-  font-weight: 700;
 }
