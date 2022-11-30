@@ -5,3 +5,8 @@ export interface IShippingFields {
   rentPayment: number;
   status: string;
 }
+
+export interface Ioptions {
+  value: string;
+  label: string;
+}

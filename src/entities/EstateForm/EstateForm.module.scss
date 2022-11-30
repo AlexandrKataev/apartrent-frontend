@@ -21,6 +21,15 @@
   width: 200px;
 }
 
+.descr {
+  position: absolute;
+  right: 103%;
+  top: 40%;
+  width: 100px;
+  text-align: end;
+  color: var(--g);
+}
+
 .stroke {
   position: relative;
 }
@@ -31,6 +40,11 @@
   border: 1px solid var(--g);
   border-radius: 10px;
   font-size: 16px;
+  margin-top: 10px;
+}
+
+.popup {
+  width: 250px;
   margin-top: 10px;
 }
 
