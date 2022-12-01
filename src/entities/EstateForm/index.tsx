@@ -13,6 +13,7 @@ import {
   useUpdateEstateMutation,
 } from 'shared/api/services/EstateService';
 import { useNavigate, useParams } from 'react-router-dom';
+import { EstateCreateRequest, EstateUpdateRequest } from 'shared/api/swagger/myApi';
 
 export const EstateForm: React.FC = () => {
   const { estateId } = useParams();
@@ -39,8 +40,8 @@ export const EstateForm: React.FC = () => {
   const onSubmit: SubmitHandler<IShippingFields> = (formData) => {
     if (window.confirm('Save estate?')) {
       estateId
-        ? updateEstate({ ...formData, id: Number(estateId) })
-        : createEstate({ ...formData, id: 0 });
+        ? updateEstate({ ...formData, id: Number(estateId) } as EstateUpdateRequest)
+        : createEstate({ ...formData, id: 0 } as EstateCreateRequest);
       navigate('/admin');
       reset();
     }
@@ -48,10 +49,10 @@ export const EstateForm: React.FC = () => {
 
   const setValueFormClick = () => {
     if (data) {
-      setValue('name', data?.name);
+      data.name && setValue('name', data.name);
       setValue('buyPrice', data?.buyPrice);
       setValue('rentPayment', data?.rentPayment);
-      setValue('description', data?.description);
+      data.description && setValue('description', data.description);
       setValue('status', data?.status);
     }
   };

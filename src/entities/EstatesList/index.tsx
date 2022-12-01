@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import s from './Estate.module.scss';
 
 import { ReactComponent as Trash } from 'shared/icons/trash.svg';
@@ -39,7 +39,7 @@ export const EstatesList: React.FC = () => {
         <div className={s.buyPrice}>{el.buyPrice} $</div>
         <div className={s.rentPayment}>{el.rentPayment} $</div>
         <div className={s.status}>{el.status}</div>
-        <div className={s.updated}>{el.lastUpdated.slice(0, 10)}</div>
+        {el.lastUpdated && <div className={s.updated}>{el.lastUpdated.slice(0, 10)}</div>}
         <div
           className={s.icon}
           onClick={() => onClickDelete(el.id)}

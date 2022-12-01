@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "generate-swagger": "npx swagger-typescript-api -p http://localhost:6100/swagger/v1/swagger.json -o ./src/shared/api/swagger -n myApi.ts",
+    "generate-swagger": "npx swagger-typescript-api -p http://localhost:6100/swagger/v1/swagger.json -o ./src/shared/api/swagger -n myApi.ts --no-client --clean-output --enum-names-as-values",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
