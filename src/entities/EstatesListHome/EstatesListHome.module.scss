@@ -1,0 +1,12 @@
+.container {
+  color: var(--b);
+  background-color: var(--w);
+  width: 70vw;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  justify-content: center;
+}

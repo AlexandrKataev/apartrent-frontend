@@ -13,7 +13,7 @@ import {
   useUpdateEstateMutation,
 } from 'shared/api/services/EstateService';
 import { useNavigate, useParams } from 'react-router-dom';
-import { EstateCreateRequest, EstateUpdateRequest } from 'shared/api/swagger/myApi';
+import { EstateCreateRequest, EstateUpdateRequest } from 'shared/api/openapi';
 
 export const EstateForm: React.FC = () => {
   const { estateId } = useParams();

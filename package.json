@@ -30,6 +30,7 @@
   "scripts": {
     "start": "react-scripts start",
     "generate-swagger": "npx swagger-typescript-api -p http://localhost:6100/swagger/v1/swagger.json -o ./src/shared/api/swagger -n myApi.ts --no-client --clean-output --enum-names-as-values",
+    "openapi-swagger": "npx openapi-typescript-codegen --input http://localhost:6100/swagger/v1/swagger.json --output ./src/shared/api/openapi --client axios",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -51,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "openapi-typescript-codegen": "^0.23.0"
   }
 }

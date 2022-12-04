@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import s from './Estate.module.scss';
 
 import { ReactComponent as Trash } from 'shared/icons/trash.svg';
-
 import { ReactComponent as Plus } from 'shared/icons/plus.svg';
 
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
 import { useDeleteEstateMutation, useGetEstatesListQuery } from 'shared/api/services/EstateService';
 
 export const EstatesList: React.FC = () => {
