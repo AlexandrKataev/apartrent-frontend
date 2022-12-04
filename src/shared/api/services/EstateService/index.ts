@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { baseUrl } from 'shared/api/config';
-import { EstateCreateRequest, EstateDto, EstateUpdateRequest } from 'shared/api/swagger/myApi';
+import { EstateCreateRequest, EstateDto, EstateUpdateRequest } from 'shared/api/openapi';
 
 export const estateApi = createApi({
   reducerPath: 'estateApi',

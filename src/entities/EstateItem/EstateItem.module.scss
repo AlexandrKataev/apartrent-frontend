@@ -1,0 +1,43 @@
+.container {
+  cursor: pointer;
+  width: 410px;
+  padding: 10px;
+  height: 500px;
+  display: grid;
+  justify-self: center;
+  border-radius: 20px;
+
+  &:hover {
+    box-shadow: -1px 0px 20px rgb(218, 218, 218);
+  }
+}
+
+.title {
+  margin-left: 20px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.buy {
+  margin-left: 20px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.rent {
+  margin-left: 20px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.status {
+  margin-left: 20px;
+  opacity: 0.5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+img {
+  width: 100%;
+  border-radius: 20px;
+}

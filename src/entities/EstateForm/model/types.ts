@@ -1,4 +1,4 @@
-import { EstateStatus } from 'shared/api/swagger/myApi';
+import { EstateStatus } from 'shared/api/openapi';
 
 export interface IShippingFields {
   name: string;
@@ -14,17 +14,17 @@ export interface Ioptions {
 }
 
 export const statusOptions: Ioptions[] = [
-  { value: EstateStatus.None, label: 'None' },
+  { value: EstateStatus.NONE, label: 'None' },
   {
-    value: EstateStatus.PreparingForInvestments,
+    value: EstateStatus.PREPARING_FOR_INVESTMENTS,
     label: 'Preparing for investments',
   },
-  { value: EstateStatus.Announcement, label: 'Announcement' },
-  { value: EstateStatus.Fundraising, label: 'Fundraising' },
-  { value: EstateStatus.BuyingEstate, label: 'Buying Estate' },
-  { value: EstateStatus.PreparingForRent, label: 'Preparing for rent' },
-  { value: EstateStatus.Rented, label: 'Rented' },
-  { value: EstateStatus.LookingForTenants, label: 'Looking for tenants' },
-  { value: EstateStatus.PreparingForSell, label: 'Preparing for sell' },
-  { value: EstateStatus.Sold, label: 'Sold' },
+  { value: EstateStatus.ANNOUNCEMENT, label: 'Announcement' },
+  { value: EstateStatus.FUNDRAISING, label: 'Fundraising' },
+  { value: EstateStatus.BUYING_ESTATE, label: 'Buying Estate' },
+  { value: EstateStatus.PREPARING_FOR_RENT, label: 'Preparing for rent' },
+  { value: EstateStatus.RENTED, label: 'Rented' },
+  { value: EstateStatus.LOOKING_FOR_TENANTS, label: 'Looking for tenants' },
+  { value: EstateStatus.PREPARING_FOR_SELL, label: 'Preparing for sell' },
+  { value: EstateStatus.SOLD, label: 'Sold' },
 ];
