@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { AdminPage, EstateProfilePage, HomePage } from 'pages/index';
-import { UserPage } from 'pages/UserPage/UserPage';
+import { UserPage } from 'pages/UserPage';
 
 const Routing: React.FC = () => {
   return (
